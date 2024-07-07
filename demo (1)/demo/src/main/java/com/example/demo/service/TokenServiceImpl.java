@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -22,11 +23,12 @@ public class TokenServiceImpl implements TokenService{
     }
 
     @Override
-    public String createToken() {
-        Token token=new Token();
-        String tokenString=UUID.randomUUID().toString();
-        token.setToken(tokenString);
-        token.setTimestamp(new Timestamp(System.currentTimeMillis()));
+    public String createToken(int clnt_id, int mbr_id) {
+        Token token = new Token();
+        String tokenString = UUID.randomUUID().toString();
+        token.setUsr_tokn_val(tokenString);
+        token.setClnt_id(clnt_id);
+        token.setMbr_id(mbr_id);
         tokenRepository.save(token);
         return tokenString;
     }

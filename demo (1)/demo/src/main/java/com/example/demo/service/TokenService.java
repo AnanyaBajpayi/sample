@@ -3,5 +3,5 @@ package com.example.demo.service;
 import com.example.demo.entity.Token;
 
 public interface TokenService {
-    String createToken();
+   public String createToken(int clnt_id,int mbr_id);
 }
